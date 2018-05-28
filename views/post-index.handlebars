@@ -1,0 +1,70 @@
+<div class="row" id="index">
+   <div class="col-sm-8 col-sm-offset-2">
+      <div class="col-sm-8">
+         <ul>
+            {{#if post}}
+               <h1>{{post.title}}</h1>
+               <h3>Catogery: {{post.subreddit}}</h3>
+               <h5>{{post.url}}</h5>
+               <p>{{post.summary}}</p>
+               <p>author: {{post.author.username}}</p>
+
+               {{!-- vote post --}}
+               <form class="vote-up" data-id="{{post._id}}">
+                  <button type="submit">Vote up: {{post.upVote}}</button>
+               </form>
+               |
+               <form class="vote-down" data-id="{{post._id}}">
+                  <button type="submit">Vote down: {{post.downVote}}</button>
+               </form>
+
+
+            {{/if}}
+         </ul>
+
+         <hr>
+         
+            {{!-- show comment --}} 
+         <div id="comment">
+            {{#each post.comments}}
+               <div>
+                  <p>{{this.author.username}} : {{this.content}}</p>
+                  <button type="submit" class="reply">Reply</button>
+                  <br>
+                  {{#each comments}}
+                     <div class="textbox" style="display: none; margin-left: 10px">
+                        <p>{{this.author.username}} : {{this.content}}</p>
+                        <textarea class="subcomment" cols="50" rows="2"></textarea>
+                        <br>
+                        <button class="submit" type="submit">Send</button>
+                     </div>
+                  {{/each}}
+                  <hr>
+               </div>
+               <br> 
+            {{/each}}
+         </div>
+         <hr>
+         {{!-- comments on post --}}
+         {{!-- <form action="/posts/{{post._id}}/comments" method="post"> --}}
+            <textarea class="form-control" name="content" id="message" placeholder="Comment"></textarea>
+            <input type="hidden" id="commentId" value="{{this._id}}">
+            <input type="hidden" id="currentUser" value="{{currentUser._id}}">
+            <input type="hidden" id="nameAuthor" value="{{username}}">
+            <input type="hidden" id="postId" value="{{post._id}}">;
+
+            <div class="text-right">
+               <button style="margin-top: 10px" id="send" type="submit">Save</button>
+            </div>
+         {{!-- </form> --}}
+         <script src="/js/comment.js"></script>
+         <hr>
+         
+
+
+      </div>
+      <div class="col-sm-2">
+         two
+      </div>
+   </div>
+</div>

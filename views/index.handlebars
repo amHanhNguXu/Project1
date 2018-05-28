@@ -1,0 +1,22 @@
+
+   <div class="row" id="index">
+      <div class="col-sm-8 col-sm-offset-2">
+         <div class="col-sm-8">
+            <ul>
+               {{#each posts}}
+               <li class="list-group-item">
+                  <div class="lead"><a href="/posts/{{this._id}}">{{this.title}}</a></div>
+                  <a href="{{this.url}}" target="_blank">{{this.url}}</a>
+                  {{!-- <p>{{this.summary}}</p> --}}
+                  <div class="text-right">
+                     <a href="/n/{{this.subreddit}}">{{this.subreddit}}</a>
+                  </div>
+               </li>
+               {{/each}}
+            </ul>
+         </div>
+         <div class="col-sm-2">
+            two
+         </div>
+      </div>
+   </div>
